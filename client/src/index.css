@@ -1,3 +1,9 @@
+/* Tailwind CSS directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles on top of Tailwind */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -13,26 +19,39 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Custom component classes using @apply */
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300;
+  }
+  
+  .card {
+    @apply rounded-xl shadow-lg bg-white dark:bg-gray-800 overflow-hidden;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500;
+  }
+}
+
+/* Some modified base styles that work well with Tailwind */
+body {
+  margin: 0;
+  min-height: 100vh;
+  @apply bg-gray-50 dark:bg-gray-900;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  @apply hover:text-blue-700 dark:hover:text-blue-400 transition-colors;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  @apply font-bold;
 }
 
 button {
@@ -54,13 +73,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Light mode tweaks */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
   }
   button {
     background-color: #f9f9f9;
